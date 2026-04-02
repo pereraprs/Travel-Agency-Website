@@ -1,9 +1,10 @@
-// Login.jsx
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
 import { auth, googleProvider } from '../firebase';
+import { Link } from 'react-router-dom';
 import './Style/Login.css';
+
 
 const IconEye = ({ show }) =>
   show ? (
@@ -181,7 +182,7 @@ const Login = () => {
             </div>
 
             <div className="forgot-row">
-              <a href="/forgot-password">Forgot password?</a>
+              <Link to="/forgot-password">Forgot password?</Link>
             </div>
 
           </div>
@@ -194,7 +195,7 @@ const Login = () => {
         </form>
 
         <p className="login-row">
-          Don't have an account? <a href="/register">Sign Up</a>
+          Don't have an account? <Link to="/register">Sign Up</Link>
         </p>
 
       </div>
