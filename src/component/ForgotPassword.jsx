@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { sendPasswordResetEmail } from 'firebase/auth';
 import { auth } from '../firebase';
+import { Link } from 'react-router-dom';
 import './Style/ForgotPassword.css';
 
 const ForgotPassword = () => {
@@ -94,7 +95,7 @@ const ForgotPassword = () => {
         </form>
 
         <p className="login-row">
-          Remember your password? <a href="/login">Log In</a>
+          Remember your password? <Link to="/login">Log In</Link>
         </p>
       </div>
     </div>
