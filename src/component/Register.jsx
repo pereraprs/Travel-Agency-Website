@@ -169,7 +169,7 @@ const Register = () => {
 
   if (!validateForm()) return;
   try {
-    // ✅ Fixed: formData.password (lowercase p)
+    //formData.password (lowercase p)
     const userCredential = await createUserWithEmailAndPassword(
       auth,
       formData.email,
@@ -177,7 +177,7 @@ const Register = () => {
     );
     const user = userCredential.user;  // was userCredintial (typo)
 
-    // ✅ Fixed: new Date() not new Data()
+    //  
     await setDoc(doc(db, "users", user.uid), {
       firstName: formData.firstName,
       lastName: formData.lastName,
@@ -348,7 +348,7 @@ const Register = () => {
         </form>
 
         <p className="login-row">
-          Already have an account? <a href="#">Log In</a>
+          Already have an account? <a href="/login">Log In</a>
         </p>
 
       </div>

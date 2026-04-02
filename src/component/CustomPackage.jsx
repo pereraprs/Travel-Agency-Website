@@ -105,7 +105,7 @@ function CustomPackage({ user }) {
     setMessage("");
 
     try {
-      // Validation
+      // Validate form data
       if (formData.destinations.length === 0) {
         setMessage("Please select at least one destination");
         setLoading(false);

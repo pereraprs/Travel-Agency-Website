@@ -7,6 +7,7 @@ import Header from "./component/Header";
 import Home from "./component/Home";
 import Register from "./component/Register";
 import Login from "./component/Login";
+import ForgotPassword from "./component/ForgotPassword";
 import Destinations from "./component/Destinations";
 import Packages from "./component/Packages";
 import CustomPackage from "./component/CustomPackage";
@@ -27,7 +28,7 @@ function App() {
           
           if (userDocSnap.exists()) {
             const userData = userDocSnap.data();
-            // Attach Firestore data to auth user object
+            // Merge Firestore profile data into user object
             currentUser.firstName = userData.firstName;
             currentUser.lastName = userData.lastName;
             currentUser.fullName = `${userData.firstName} ${userData.lastName}`;
@@ -55,6 +56,7 @@ function App() {
           <Route path="/" element={<Home user={user} />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/destinations" element={<Destinations user={user} />} />
           <Route path="/packages" element={<Packages user={user} />} />
           <Route path="/custom-package" element={<CustomPackage user={user} />} />

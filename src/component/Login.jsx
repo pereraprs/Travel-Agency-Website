@@ -1,25 +1,9 @@
 // Login.jsx
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
 import { auth, googleProvider } from '../firebase';
 import './Style/Login.css';
-
-// ─── SVG Icons ───────────────────────────────────────────────
-
-const IconMail = () => (
-  <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
-    <rect x="2" y="4" width="20" height="16" rx="2" />
-    <path d="m2 7 10 7 10-7" />
-  </svg>
-);
-
-const IconLock = () => (
-  <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
-    <rect x="3" y="11" width="18" height="11" rx="2" />
-    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
-  </svg>
-);
 
 const IconEye = ({ show }) =>
   show ? (
@@ -49,8 +33,6 @@ const AppleIcon = () => (
   </svg>
 );
 
-// ─── Login Component ──────────────────────────────────────────
-
 const Login = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ email: '', password: '' });
@@ -66,9 +48,8 @@ const Login = () => {
       const user = result.user;
       alert(`Welcome back ${user.displayName}!`);
       setFormData({ email: '', password: '' });
-      navigate('/'); // Redirect to home after successful login
+      navigate('/');
     } catch (err) {
-      console.error('Google Sign-in Error:', err);
       if (err.code === 'auth/popup-closed-by-user') {
         alert('Sign-in cancelled');
       } else {
@@ -97,15 +78,13 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validateForm()) return;
-
     setLoginLoading(true);
     try {
       await signInWithEmailAndPassword(auth, formData.email, formData.password);
       alert('Login successful!');
       setFormData({ email: '', password: '' });
-      navigate('/'); // Redirect to home after successful login
+      navigate('/');
     } catch (err) {
-      console.error(err);
       if (err.code === 'auth/user-not-found') {
         setErrors({ email: 'Email not registered' });
       } else if (err.code === 'auth/wrong-password') {
@@ -124,11 +103,9 @@ const Login = () => {
     <div className="reg-root">
       <div className="reg-card">
 
-        {/* ── Header ── */}
         <h1 className="reg-title">Log In</h1>
         <p className="reg-subtitle">Welcome back</p>
 
-        {/* ── Social sign-in row: Google | divider | Apple ── */}
         <div className="top-actions">
           <button
             type="button"
@@ -149,7 +126,6 @@ const Login = () => {
 
         <div className="divider-full">or sign in with email</div>
 
-        {/* ── Form ── */}
         <form onSubmit={handleSubmit} noValidate>
           <div className="form-body">
 
@@ -157,7 +133,12 @@ const Login = () => {
             <div className="form-group full-width">
               <label className="form-label">Email Address</label>
               <div className="input-wrap">
-                <span className="input-icon"><IconMail /></span>
+                <span className="input-icon">
+                  <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
+                    <rect x="2" y="4" width="20" height="16" rx="2" />
+                    <path d="m2 7 10 7 10-7" />
+                  </svg>
+                </span>
                 <input
                   className={`form-input${errors.email ? ' error-input' : ''}`}
                   type="email"
@@ -174,7 +155,12 @@ const Login = () => {
             <div className="form-group full-width">
               <label className="form-label">Password</label>
               <div className="input-wrap">
-                <span className="input-icon"><IconLock /></span>
+                <span className="input-icon">
+                  <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
+                    <rect x="3" y="11" width="18" height="11" rx="2" />
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                  </svg>
+                </span>
                 <input
                   className={`form-input${errors.password ? ' error-input' : ''}`}
                   type={showPassword ? 'text' : 'password'}
@@ -182,7 +168,6 @@ const Login = () => {
                   value={formData.password}
                   onChange={handleChange}
                   placeholder="Enter your password"
-                  style={{ paddingRight: '40px' }}
                 />
                 <button
                   type="button"
@@ -195,20 +180,17 @@ const Login = () => {
               {errors.password && <span className="error-msg">{errors.password}</span>}
             </div>
 
-            {/* Forgot Password */}
             <div className="forgot-row">
-              <a href="#">Forgot password?</a>
+              <a href="/forgot-password">Forgot password?</a>
             </div>
 
-          </div>{/* end .form-body */}
+          </div>
 
-          {/* ── Footer: submit ── */}
           <div className="form-footer">
             <button type="submit" className="submit-btn" disabled={loginLoading}>
               {loginLoading ? 'Logging in...' : 'Log In'}
             </button>
           </div>
-
         </form>
 
         <p className="login-row">

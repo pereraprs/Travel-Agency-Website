@@ -9,7 +9,7 @@ import "./component/Style/Register.css";
 import "./component/Style/Footer.css";
 import "./component/Style/Packages.css";
 
-// Create root element and render the App component
+// Initialize and render the app
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>

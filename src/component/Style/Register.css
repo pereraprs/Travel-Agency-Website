@@ -191,7 +191,7 @@
 
 .form-input {
   width: 100%;
-  padding: 11px 14px 11px 38px;
+  padding: 11px 14px 11px 45px;
   border: 1.5px solid #e8e8e8;
   border-radius: 12px;
   font-size: 14px;
@@ -201,6 +201,7 @@
   transition: border-color 0.2s, background 0.2s;
   outline: none;
   appearance: none;
+  text-indent: 0;
 }
 
 .form-input:focus {
@@ -214,6 +215,7 @@
 
 .form-input::placeholder {
   color: #bbb;
+  opacity: 1;
 }
 
 /* ── Password toggle ── */
