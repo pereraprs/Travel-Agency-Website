@@ -147,7 +147,7 @@ function Home({ user }) {
     <>
       {/* Hero / Intro Section */}
       <div className='home' id='home'>
-        <h1 className='home-title'><em>Explor the Sri Lanka with PEARL PASSAGE</em></h1>
+        <h1 className='home-title'><em>Explore the Sri Lanka with PEARL PASSAGE</em></h1>
         <p>
           {renderText()}
           <span style={{
